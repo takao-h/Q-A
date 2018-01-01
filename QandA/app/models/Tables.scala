@@ -18,11 +18,9 @@ object Tables  extends {
     def facebookAccessToken = column[String]("facebook_access_token")
     def instagramAccessToken = column[String]("instagram_access_token")
 
-    def * = (email,password,twitterAccessToken,facebookAccessToken,instagramAccessToken) <> (User.tupled, User.unapply)
   }
 
   object Users extends TableQuery(new Users(_))
-
   implicit val getUserResult = {
     GetResult { r => User(r.<<, r.<<, r.<<, r.<<, r.<<) }
   }
